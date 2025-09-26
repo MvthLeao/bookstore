@@ -1,5 +1,6 @@
 import json
-from rest_framework import APITestCase, APIClient, status
+from rest_framework.test import APITestCase, APIClient
+from rest_framework import status
 from django.urls import reverse
 from product.factories import CategoryFactory, ProductFactory
 from order.factories import UserFactory
@@ -42,7 +43,7 @@ class TestProductViewSet(APITestCase):
             content_type='application/json'
         )
 
-        self.assetEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
         created_product = Product.objects.get(title='notebook')
 
